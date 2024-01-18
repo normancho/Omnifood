@@ -1,0 +1,425 @@
+/* rem为根字体大小，em为 当前字体大小（取决于父元素） */
+/* 在媒体查询中，rem 和 em 不的大小不基于浏览器字体大小
+在媒体查询中1em=1rem=16px */
+
+/* 为避免某些浏览器使用rem作媒体查询单位有bug采用em为单位 */
+
+/*****************************/
+/* BELOW 1344px (smaller computer) */
+/*****************************/
+/* 84em = 1350px(round value of 1366px) / 16px */
+@media (max-width: 84em) {
+    .hero {
+        max-width: 120rem;
+    }
+
+    .heading-primary {
+        font-size: 4.4rem;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/*****************************/
+/* BELOW 1200px (Landscape Tablets) */
+/*****************************/
+@media(max-width:75em) {
+    html {
+        /* 9px */
+        font-size: 56.25%;
+    }
+
+    .heading-secondary {
+        font-size: 3.6rem;
+    }
+
+    .heading-tertiary {
+        font-size: 2.4rem;
+    }
+
+    .grid {
+        column-gap: 4.8rem;
+        row-gap: 6.4rem;
+    }
+
+    .header {
+        padding: 0 3.2rem;
+    }
+
+    .hero {
+        gap: 4.8rem;
+    }
+
+    .main-nav-list {
+        gap: 3.2rem;
+    }
+
+    .testimonials-container {
+        padding: 4.6rem;
+    }
+
+}
+
+/*****************************/
+/* BELOW 944px (Tablets) */
+/*****************************/
+/* 944px */
+@media(max-width:59em) {
+    html {
+        font-size: 50%;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 0 8rem;
+        gap: 6.4rem;
+    }
+
+    .hero-text-box,
+    .hero-img-box {
+        text-align: center;
+        /* 图片属于内联元素所以也会因此居中 */
+    }
+
+    .hero-img {
+        width: 50%;
+    }
+
+    .delivered-meals {
+        justify-content: center;
+        margin-top: 3.2rem;
+    }
+
+    .logos img {
+        height: 2.4rem;
+    }
+
+    .step-number {
+        font-size: 7.4rem;
+    }
+
+    .meal-content {
+        padding: 2.4rem 3.2rem 3.2rem 3.2rem;
+    }
+
+    .section-testimonials {
+        grid-template-columns: 1fr;
+        row-gap: 4.8rem;
+    }
+
+    .gallery {
+        grid-column: 1 / -1;
+        grid-row: 2 / 3;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .cta {
+        grid-template-columns: 3fr 2fr;
+    }
+
+    .cta-form {
+        grid-template-columns: 1fr;
+    }
+
+    .btn--form {
+        margin-top: 1.2rem;
+    }
+
+    .btn-mobile-nav {
+        display: block;
+        /* 让focus等始终在最上面 */
+        z-index: 9999;
+    }
+
+    .header {
+        position: relative;
+    }
+
+    .main-nav {
+        background-color: rgba(255, 255, 255, 0.85);
+        /* 模糊效果，部分浏览器不支持 */
+        backdrop-filter: blur(5px);
+        /* 用webkit支持safari */
+        -webkit-backdrop-filter-: blur(10px);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        /* 从右往左切入动画效果 */
+        /* tips: 其实也可以用改变绝对定位的坐标实现动画但是这样的动画没有这么流畅 */
+        transform: translateX(100%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* transition第三个参数为动画效果 */
+        transition: all 0.5s ease-out;
+
+        /* display: none; */
+        /* 👆没有动画效果 */
+
+        /* 👇有动画效果正确操作 */
+        /* 1.在视觉上隐藏部件 */
+        opacity: 0;
+
+        /* 2.停止鼠标或键盘操作 */
+        pointer-events: none;
+
+        /* 3.隐藏于屏幕阅读器 */
+        visibility: hidden;
+    }
+
+    .nav-open .main-nav {
+        /* 恢复正常状态 */
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+        /* 从右往左切入动画效果 */
+        transform: translateX(0);
+    }
+
+    .nav-open .icon-mobile-nav[name="close-outline"] {
+        display: block;
+    }
+
+    .nav-open .icon-mobile-nav[name="menu-outline"] {
+        display: none;
+    }
+
+    .main-nav-list {
+        flex-direction: column;
+        gap: 4.8rem;
+    }
+
+    .main-nav-link:link,
+    .main-nav-link:visited {
+        font-size: 3rem;
+    }
+
+    .pricing-plan {
+        padding: 4.8rem 3.2rem;
+    }
+}
+
+/* 800px */
+@media (max-width:50em) {
+    .pricing-plan {
+        padding: 4.8rem 0 4.8rem 3.2rem;
+        width: 85%;
+    }
+
+    .pricing-plan .plan-header,
+    .pricing-plan .plan-sign-up {
+        padding-right: 3.2rem;
+    }
+
+    .meal-content {
+        padding: 2.4rem;
+    }
+}
+
+/*****************************/
+/* BELOW 704px (Smaller Tablets) */
+/*****************************/
+@media (max-width:44em) {
+    .pricing-plan {
+        padding: 4.2rem 3.6rem;
+        width: 100%;
+    }
+
+    .pricing-plan .list-item {
+        gap: 1.6rem;
+    }
+
+    /* Awesome! */
+    .grid--3cols,
+    .grid--4cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .diets {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
+    .heading-secondary {
+        margin-bottom: 4.8rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(6, 1fr);
+        row-gap: 8rem;
+    }
+
+    .footer-grid .nav-col {
+        grid-row: 1;
+        /* 新技巧！非对称网格经常用 */
+        grid-column: span 2;
+    }
+
+
+    .footer-grid .logo-col,
+    .footer-grid .address-col {
+        grid-column: span 3;
+    }
+
+    /* 
+    .footer-grid .address-col {
+        grid-row: 2 / 3;
+        grid-column: 3 / -1;
+    } */
+
+}
+
+/* 656px */
+@media (max-width:41em) {
+    .pricing-plan {
+        padding: 4.2rem 0 4.2rem 2.4rem;
+        width: 100%;
+    }
+
+    .pricing-plan .plan-header,
+    .pricing-plan .plan-sign-up {
+        padding-right: 0;
+    }
+
+    .pricing-plan .list-item {
+        gap: 1.4rem;
+    }
+}
+
+/* 608px */
+@media (max-width:38em) {
+    .logos {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        column-gap: 3.2rem;
+        row-gap: 1.6rem;
+    }
+
+
+    .logos img:nth-child(2),
+    .logos img:nth-child(3),
+    .logos img:nth-child(4) {
+        justify-self: center;
+        grid-column: span 2;
+    }
+
+    .logos img:first-child,
+    .logos img:last-child {
+        grid-row: 2;
+        grid-column: span 3;
+    }
+
+    .logos img:first-child {
+        justify-self: end;
+    }
+}
+
+/*****************************/
+/* BELOW 544px (Phones) */
+/*****************************/
+@media (max-width:34em) {
+    .grid {
+        row-gap: 4.8rem;
+    }
+
+    .grid--2cols,
+    .grid--3cols,
+    .grid--4cols {
+        grid-template-columns: 1fr;
+    }
+
+    .section-hero {
+        padding: 2.4rem 0 6.4rem 0;
+    }
+
+    .hero {
+        padding: 0 3.2rem;
+    }
+
+    .hero-img {
+        width: 80%;
+    }
+
+    .btn,
+    .btn:link,
+    .btn:visited {
+        padding: 2.4rem 1.6rem;
+    }
+
+    .step-img-box:nth-child(2) {
+        grid-row: 1;
+    }
+
+    .step-img-box:last-child {
+        grid-row: 5;
+    }
+
+    .step-img-box {
+        /* 帅技巧！既增加了间距也不影响布局 */
+        transform: translateY(3.2rem);
+    }
+
+    .section-testimonials {
+        row-gap: 1.2;
+    }
+
+    .testimonials {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+    }
+
+    .pricing-plan {
+        padding: 4.8rem;
+    }
+
+    .pricing-plan .list-item {
+        gap: 1.6rem;
+    }
+
+    .cta {
+        grid-template-columns: 1fr;
+        /* content没有内容所以改成一列后会没有空间显示图片 */
+        grid-template-rows: 3.5fr 7fr;
+    }
+
+    .cta-text-box {
+        padding: 3.2rem;
+    }
+
+    .cta-img-box {
+        grid-row: 1;
+    }
+}
+
+/* 384px */
+@media (max-width:24em) {
+    .logos img {
+        height: 1.6rem;
+    }
+}
+
+/* 256px */
+@media (max-width:16em) {
+    .logos {
+        row-gap: 1.2rem;
+    }
+
+    .logos img {
+        height: 1.2rem;
+    }
+}
+
+/* - Font sizes (px): 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 
+
+- SPACING SYSTEM (px): 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
